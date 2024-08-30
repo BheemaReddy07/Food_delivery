@@ -1,0 +1,108 @@
+/* Drawer Styles */
+.drawer {
+    position: fixed;
+    top: 0;
+    right: -250px; /* Hidden off-screen */
+    width: 250px;
+    height: 100vh;
+    background-color: var(--drawer-bg);
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    transition: right 0.3s ease-in-out, transform 0.3s ease-in-out; /* Smooth slide transition */
+    z-index: 1000;
+    padding-top: 60px; /* To avoid overlapping with the navbar */
+}
+
+.drawer.open {
+    right: 0; /* Drawer is visible */
+    transform: translateX(0); /* Ensure it's at its visible position */
+}
+
+.drawer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.drawer ul li {
+    padding: 15px 20px;
+    border-bottom: var(--drawer-ul-li-border-bottom);
+}
+
+.drawer ul li a {
+    text-decoration: none;
+    color: var(--drawer-ul-li-a-color);
+    font-size: 16px;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+
+.drawer ul li a:hover {
+    background-color: var(--drawer-ul-li-a-hover-bg);
+}
+
+.drawer ul li a:active {
+    background-color: var(--drawer-ul-li-a-hover-bg-act);
+}
+
+/* Dark Mode Support */
+.drawer.dark {
+    background-color: var(--drawer-bg);
+    color: var(--text-color);
+}
+
+.drawer.dark ul li a {
+    color: var(--drawer-ul-li-a-color);
+}
+
+.drawer.dark ul li:hover {
+    background-color: var(--drawer-ul-li-a-hover-bg);
+}
+
+.drawer.dark ul li a:active {
+    background-color: var(--drawer-ul-li-a-hover-bg-act);
+}
+
+/* Drawer Header with Close Button */
+.drawer-header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+    margin-top: -9vh;
+    margin-right: -1vw;
+}
+
+.close-drawer {
+    background-color: transparent;
+    border: none !important;
+    cursor: pointer;
+    font-size: 18px;
+    color: var(--drawer-ul-li-a-color);
+}
+
+.drawer.dark .close-drawer {
+    color: var(--drawer-ul-li-a-color);
+}
+
+/* Backdrop for the Drawer */
+.drawer-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    z-index: 999; /* Slightly below the drawer */
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out; /* Smooth fade transition */
+}
+
+.drawer-backdrop.open {
+    opacity: 1;
+    pointer-events: auto; /* Allows clicking on the backdrop to close */
+}
+@media (max-width:768px){
+    .drawer-header{
+        margin-top: -7vh;
+        margin-right: 0vw;
+    }
+}

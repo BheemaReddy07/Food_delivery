@@ -1,0 +1,7 @@
+ .app hr{
+    width: 1px;
+    background-color: aliceblue;
+    border-radius: 100%;
+    padding: 5px;
+    padding-bottom: 5px;
+ }

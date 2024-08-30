@@ -1,0 +1,35 @@
+.food-display{
+    margin-top: 30px;
+}
+.food-display h2{
+    
+    font-size: max(2vw,24px);
+    font-weight: 600;
+
+}
+.food-display-list{
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(240px,1fr));
+    margin-top: 30px;
+    gap:30px;
+    row-gap: 50px;
+}
+.sort-dropdown {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.sort-dropdown label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.sort-dropdown select {
+    padding: 5px;
+    font-size: 16px;
+    background-color:whitesmoke;
+    outline-color: tomato;
+    border-radius: 4px;
+}

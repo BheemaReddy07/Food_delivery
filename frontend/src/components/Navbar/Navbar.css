@@ -1,0 +1,300 @@
+:root {
+    --underline-color-default: linear-gradient(to right, yellow, orange);
+    --underline-color-active: linear-gradient(to right, green, lime); /* Active underline gradient */
+}
+
+.navbar {
+    width: 100vw; /* Full viewport width */
+    position: fixed; /* Fixed position for full-width */
+    top: 0;
+    left: 0;
+    z-index:10;; /* Ensure the navbar stays above other elements */
+    background-color: var(--background-color); /* Dynamic background color based on theme */
+    padding: 8px 0; /* Adjusted padding */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-color); /* Dynamic text color based on theme */
+}
+
+.navbar .logo {
+    width: 80px;
+    height: 80px;
+}
+
+.navbar-menu {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    color: #49557e;
+    font-size: 18px;
+    margin: 0;
+    padding: 0;
+    transition: color 0.3s ease;
+}
+
+.navbar-menu li {
+    cursor: pointer;
+    position: relative;
+    padding: 10px 0; /* Padding to ensure proper spacing */
+    line-height: 1.2; /* Line height for text alignment */
+}
+
+.navbar-menu li::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--underline-color-default); /* Gradient underline */
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-out, background 0.3s ease-out; /* Smooth transition */
+}
+
+.navbar-menu li:hover::after,
+.navbar-menu .active::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.navbar-menu .active::after {
+    background: var(--underline-color-active); /* Active underline gradient */
+}
+
+.dark-button {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding-right: 40px !important;
+}
+
+.navbar button {
+    background: transparent;
+    font-size: 16px;
+    color: #49557e;
+    border: 1px solid tomato;
+    padding: 10px 10px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.navbar .dark-button .signinbutton {
+    border: 1px solid tomato;
+}
+
+.navbar .dark-button .signinbutton:hover {
+    background-color: rgb(211, 129, 115); /* Sign-in button hover effect */
+}
+
+.navbar .dark-button .darkmode {
+    border: 1px solid tomato;
+}
+
+.navbar-search-icon {
+    position: relative;
+}
+
+.navbar-search-icon .dot {
+    position: absolute;
+    min-width: 10px;
+    min-height: 10px;
+    background-color: tomato;
+    border-radius: 5px;
+    top: -8px;
+    right: -8px;
+}
+
+.search-bar-form {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar-form input {
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    padding: 5px 10px;
+    outline: none;
+    width: 180px;
+}
+
+.search-icon {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    transition: color 0.3s ease;
+}
+
+.search-icon:hover {
+    color: #49557e;
+}
+
+.dark-button button {
+    background: none;
+    border: 1px solid var(--text-color);
+    padding: 5px 10px;
+    margin-left: 10px;
+}
+
+.menu-toggle {
+    display: block; /* Hidden by default */
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+.navbar-profile {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.profileimg {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.username-tooltip {
+    display: none;
+    position: absolute;
+    top: -130%; /* Position tooltip below the profile image */
+    left: 130%; /* Center horizontally */
+    transform: translateX(-50%); /* Center horizontally */
+    margin-top: 10px; /* Space between profile image and tooltip */
+    font-size: 16px;
+    color: var(--text-color); /* Adjust based on your theme */
+    background-color: #fff; /* Background color */
+    padding: 5px 10px;
+    border-radius: 4px;
+    white-space: nowrap; /* Prevents text from wrapping */
+    z-index: 2; /* Ensure it appears above other content */
+}
+
+.navbar-profile:hover .username-tooltip {
+    display: block;
+}
+.mobile{
+    display: none;
+}
+.nav-profile-dropdown {
+    position: absolute;
+    top: 40px; /* Position dropdown below the profile image */
+    right: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #fff2ef;
+    padding: 12px 25px;
+    border-radius: 4px;
+    border: 1px solid tomato;
+    outline: 2px solid white;
+    list-style: none;
+    display: none; /* Initially hidden */
+}
+
+.navbar-profile .nav-profile-dropdown {
+    display: flex; /* Display when visible */
+}
+
+.nav-profile-dropdown li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.nav-profile-dropdown img {
+    width: 20px;
+}
+
+.nav-profile-dropdown li:hover {
+    color: tomato;
+}
+
+
+
+
+
+.drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 250px;
+    height: 100vh;
+    background: #fff;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.drawer.open {
+    transform: translateX(0);
+}
+
+.drawer .drawer-content {
+    padding: 20px;
+}
+
+.drawer .drawer-content a {
+    display: block;
+    padding: 10px;
+    color: #49557e;
+    text-decoration: none;
+}
+
+.drawer .drawer-content a:hover {
+    background-color: #f0f0f0;
+}
+
+.drawer .drawer-content .close-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+@media (max-width: 768px) {
+    .navbar-menu {
+        display: none; /* Hide default menu on mobile */
+    }
+
+    .menu-toggle {
+        display: block; /* Show menu toggle button on mobile */
+    }
+
+    .navbar .logo {
+        width: 60px; /* Adjust logo size for mobile */
+        height: 60px;
+    }
+
+    .navbar-right {
+        gap: 8px; /* Reduce gap between elements on mobile */
+    }
+
+    .search-bar-form input {
+        padding-left:0px;
+        width: 120px; /* Adjust search input width on mobile */
+    }
+    .signinbutton{
+        width: 60px;
+        height: 30px;
+        padding: 0px;
+        text-align:center;
+        font-size:8px;
+
+    }
+     
+    
+}

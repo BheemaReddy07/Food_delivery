@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+:root {
+    --background-color: #fff;
+    --text-color: black;
+    --card-item-color: white;
+    --login-back-bgcolor: #00000090;
+    --login-title-color: black;
+    --navbar-menu-bgcolor: silver;
+    --navbar-menu-text: black;
+    --navbar-menu-hover: rgb(241, 223, 223);
+    --food-item-color-bg: white;
+    --cart-item-detail-color: black;
+    --navbar-bg: rgb(243, 238, 238);
+
+    --drawer-bg: #fff;
+    --drawer-ul-li-border-bottom: 1px solid #ddd;
+    --drawer-ul-li-a-color: #333;
+    --drawer-ul-li-a-hover-bg: #f0f0f0;
+    --drawer-ul-li-a-hover-bg-act: #ddd;
+    --password-toggle:black;
+    --dropdown-color:black;
+    --username-toolpit-bg:white;
+    --username-toolpit-color:black;
+}
+
+.dark {
+    --background-color: rgb(32, 28, 28);
+    --text-color: white;
+    --card-item-color: rgb(63, 65, 65);
+    --login-back-bgcolor: rgb(231, 220, 220);
+    --login-title-color: white;
+    --navbar-menu-text: white;
+    --navbar-menu-bgcolor: rgb(58, 52, 52);
+    --navbar-menu-hover: rgb(29, 19, 19);
+    --food-item-color-bg: rgb(20, 18, 18);
+    --cart-item-detail-color: white;
+    --cart-item-total-color: white;
+    --navbar-menu-text-color: white;
+    --navbar-bg: rgb(6, 6, 17);
+    --drawer-bg: #333;
+    --drawer-ul-li-a-color: #fff;
+    --drawer-ul-li-a-hover-bg: #444;
+    --drawer-ul-li-border-bottom: 1px solid #fff;
+    --password-toggle:black;
+    --dropdown-color:black;
+    --username-toolpit-bg:black;
+    --username-toolpit-color:white;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.navbar {
+    background-color: var(--navbar-bg);
+    color: var(--text-color);
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.explore-menu h1 {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.food-item-info {
+    background-color: var(--card-item-color);
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.login-popup-container {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.login-popup-title {
+    color: var(--login-title-color);
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.navbar-menu-drop.show {
+    background-color: var(--navbar-menu-bgcolor);
+    color: var(--navbar-menu-text);
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.navbar-menu-drop.show li:hover {
+    background-color: var(--navbar-menu-hover);
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.menu-toggle {
+    background-color: var(--background-color);
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.menu-toggle button:hover {
+    background-color: var(--login-back-bgcolor);
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.food-item-counter {
+    background-color: var(--food-item-color-bg);
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.cart-items-title {
+    color: var(--cart-item-detail-color);
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.cart-total-details {
+    color: var(--cart-item-total-color);
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.navbar .navbar-menu li {
+    color: var(--navbar-menu-text-color);
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.navbar .navbar-right .dark-button .signinbutton {
+    color: var(--navbar-menu-text-color);
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.navbar .navbar-right .dark-button .darkmode {
+    color: var(--navbar-menu-text-color);
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.drawer {
+    background-color: var(--drawer-bg);
+    /* Ensure smooth transform */
+}
+
+.drawer ul li a {
+    color: var(--drawer-ul-li-a-color);
+     
+}
+
+.drawer ul li a:hover {
+    background-color: var(--drawer-ul-li-a-hover-bg);
+   
+}
+.toggle-password-visibility{
+    color:var(--password-toggle);
+}
+.nav-profile-dropdown{
+    color:var(--dropdown-color);
+}
+.username-tooltip{
+    background-color: var(--username-toolpit-bg);
+    color: var(--username-toolpit-color);
+}
+.eye-icon{
+    color: var(--password-toggle);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Outfit;
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.app {
+    width: 95%;
+    margin: auto;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
