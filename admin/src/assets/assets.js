@@ -20,7 +20,7 @@ import upload_area from './upload-area.png'
 export const assets = {
     logo,
     basket_icon,
-    header_img,
+     
     
     rating_starts,
     add_icon_green,

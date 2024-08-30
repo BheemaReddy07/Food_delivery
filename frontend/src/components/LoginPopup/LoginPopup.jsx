@@ -26,7 +26,7 @@ const LoginPopup = ({ setShowLogin }) => {
         if (token) {
           try {
             const decodedToken = jwtDecode(token);
-            setUserName(decodedToken.name);
+             
           } catch (error) {
             console.error("Error decoding token:", error);
           }

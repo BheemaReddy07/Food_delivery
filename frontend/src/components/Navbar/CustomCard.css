@@ -1,0 +1,48 @@
+.custom-card {
+    width: 250px; /* Set the width of the card */
+    margin: auto; /* Center the card */
+    border-radius: 15px; /* Rounded corners */
+    overflow: hidden; /* Ensures the content stays within the card */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow for the card */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+    background-color: white;
+  }
+  
+  .custom-card:hover {
+    transform: scale(1.05); /* Slight scale effect on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhance the shadow on hover */
+  }
+  
+  .custom-image {
+    width: 100%; /* Make the image cover the card width */
+    height: 300px; /* Maintain the aspect ratio */
+  }
+  
+  .custom-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #333; /* Dark color for the title */
+    text-align: center; /* Center the title */
+    margin-bottom: 8px; /* Space between title and description */
+  }
+  
+  .custom-description {
+    font-size: 14px;
+    color: #777; /* Light grey color for description */
+    text-align: center; /* Center the description */
+    font-family: fantasy;
+    font-weight:400;
+  }
+  
+  .details {
+    padding: 16px; /* Padding inside the card for content */
+    text-align: center; /* Center align the content */
+  }
+  
+
+  @media (max-width:768px) {
+    .custom-card{
+        
+    }
+    
+  }

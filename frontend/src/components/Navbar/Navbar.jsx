@@ -9,6 +9,7 @@ import { MenuOutlined, CloseOutlined, HomeFilled, MobileFilled, PhoneFilled, Sho
 import Drawer from './Drawer';
 import { jwtDecode } from 'jwt-decode';
 import {toast} from 'react-toastify'
+import CustomCard from './CustomCard';
  
  
 
@@ -22,8 +23,8 @@ const Navbar = ({ setShowLogin }) => {
   const [menuVisible, setMenuVisible] = useState(false);
   const [drawerVisible, setDrawerVisible] = useState(false);
   const [userName, setUserName] = useState("");
-  const [dropdownVisible,setDropdownVisible] = useState(false);
   const [profileImage, setProfileImage] = useState("");
+  const [cardVisible,setCardVisible] = useState(false);
 
   useEffect(() => {
     if (token) {
@@ -59,9 +60,6 @@ const Navbar = ({ setShowLogin }) => {
     setToken("");
     navigate("/");
     setCartItems({});
-   
-     
-  
   };
 
   const handleSearch = (e) => {
@@ -87,15 +85,9 @@ const Navbar = ({ setShowLogin }) => {
     handleNavigation(path, scrollTo);
   };
   const handleProfileClick = () => {
-    setDropdownVisible(!dropdownVisible);
+    setCardVisible(!cardVisible);
   };
-  const handleProfileHover = () => {
    
-  };
-
-  const handleProfileHoverOut = () => {
-    
-  };
 
    
 
@@ -134,17 +126,12 @@ const Navbar = ({ setShowLogin }) => {
           {!token ? 
             <button className='signinbutton' onClick={() => setShowLogin(true)}>SignIn</button>
             : 
-            <div className='navbar-profile' onClick={handleProfileClick} onMouseEnter={handleProfileHover}
-            onMouseLeave={handleProfileHoverOut}>
+            <div className='navbar-profile' onClick={handleProfileClick} >
               <img className='profileimg' src={profileImage} onClick={handleProfileClick} alt="" />
-              <span className='username-tooltip'>{userName}</span>
+              <div className={`username-card ${cardVisible ? 'visible' : ''}`}>
+                <CustomCard/>
+              </div>
               <div className='mobile'><p>{userName}</p></div>
-              { dropdownVisible && ( <ul className="nav-profile-dropdown">
-                
-                <li><img src={assets.bag_icon} alt="" /><p>Orders</p></li>
-                <hr />
-                <li onClick={logout}><img src={assets.logout_icon} alt="" /><p>Logout</p></li>
-              </ul>)}
              </div>
           }
           <button className='darkmode' onClick={toggleTheme}>
@@ -156,6 +143,7 @@ const Navbar = ({ setShowLogin }) => {
         </div>
       </div>
       <Drawer isOpen={drawerVisible} onClose={toggleDrawer} />
+      
     </div>
   );
 };

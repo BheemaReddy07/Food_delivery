@@ -179,6 +179,23 @@
     white-space: nowrap; /* Prevents text from wrapping */
     z-index: 2; /* Ensure it appears above other content */
 }
+.username-card {
+    display: none;
+    position: absolute;
+    top: 20px; /* Position below the profile image */
+    right: 150px; /* Adjust this to align with the profile image */
+    z-index: 10;
+    border-radius: 8px; /* Rounded corners */
+    padding: 15px;
+
+}
+ 
+  
+  .username-card.visible {
+    display: block;
+    width: 20px;
+    height:20px
+  }
 
 .navbar-profile:hover .username-tooltip {
     display: block;
@@ -186,46 +203,6 @@
 .mobile{
     display: none;
 }
-.nav-profile-dropdown {
-    position: absolute;
-    top: 40px; /* Position dropdown below the profile image */
-    right: 0;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    background-color: #fff2ef;
-    padding: 12px 25px;
-    border-radius: 4px;
-    border: 1px solid tomato;
-    outline: 2px solid white;
-    list-style: none;
-    display: none; /* Initially hidden */
-}
-
-.navbar-profile .nav-profile-dropdown {
-    display: flex; /* Display when visible */
-}
-
-.nav-profile-dropdown li {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-}
-
-.nav-profile-dropdown img {
-    width: 20px;
-}
-
-.nav-profile-dropdown li:hover {
-    color: tomato;
-}
-
-
-
-
-
 .drawer {
     position: fixed;
     top: 0;
@@ -295,6 +272,7 @@
         font-size:8px;
 
     }
+     
      
     
 }
