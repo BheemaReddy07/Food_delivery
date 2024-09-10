@@ -44,7 +44,7 @@ const FoodDisplay = ({ category }) => {
             <div className='food-display-list'>
                 {sortedItems.length > 0 ? (
                     sortedItems.map((item, index) => (
-                        <FoodItem key={index} id={item._id} name={item.name} description={item.description} price={item.price} image={item.image} />
+                        <FoodItem key={index} id={item._id} name={item.name} description={item.description} price={item.price} image={item.image} rate={item.rate} />
                     ))
                 ) : (
                     <p>No items found</p>

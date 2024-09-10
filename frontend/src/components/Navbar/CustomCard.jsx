@@ -11,6 +11,7 @@ const CustomCard = () => {
   const [name, setName] = useState('');
   const [profileImageUrl, setProfileImageUrl] = useState(assets.profile_icon);
   const [userEmail,setUserEmail] = useState('');
+  const {url} = useContext(StoreContext)
 
   useEffect(() => {
     if (token) {
@@ -19,7 +20,7 @@ const CustomCard = () => {
         const img = decodedToken.profileImage;
         const userName = decodedToken.name;
         const mail = decodedToken.email;
-        const baseUrl = "http://localhost:4000/profiles";
+        const baseUrl = `${url}/profiles`;
         const imageUrl = img ? `${baseUrl}/${img}` : assets.profile_icon;
         
         setName(userName);

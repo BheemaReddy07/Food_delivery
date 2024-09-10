@@ -10,7 +10,8 @@ const addFood = async (req,res)=>{
         description:req.body.description,
         price:req.body.price,
         category:req.body.category,
-        image:image_filename
+        image:image_filename,
+        rate:req.body.rate
     })
     try{
         await food.save();

@@ -3,7 +3,8 @@ import './FoodItem.css'
 import { assets } from '../../assets/assets'
 import { StoreContext } from '../../Context/StoreContext'
 import { ThemeContext } from '../../Context/ThemeContext'
-const FoodItem = ({id,name,price,description,image}) => {
+import StarRating from './StarRating'
+const FoodItem = ({id,name,price,description,image,rate}) => {
 
  /* const [itemCount,setItemCount]=useState(0)*/
   const {cartItems,addToCart,removeFromCart,url}= useContext(StoreContext)
@@ -26,11 +27,12 @@ const FoodItem = ({id,name,price,description,image}) => {
       <div className='food-item-info'>
         <div className='food-item-name-rating'>
             <p>{name}</p>
-            <img src={assets.rating_starts} />
+            <StarRating rating={rate} />
         </div>
+        
         <p className='food-item-desc'>{description}</p>
         <p className='food-item-price'>₹{price}</p>
-      </div>
+      </div> 
     </div>
   )
 }

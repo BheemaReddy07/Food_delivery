@@ -8,7 +8,7 @@ import List from './Pages/List/List'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
  const App = () => {
-  const url  = "http://localhost:4000"
+  const url  = "http://192.168.198.22:4000"
    return (
      <div>
       <ToastContainer />

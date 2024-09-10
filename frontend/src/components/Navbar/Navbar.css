@@ -252,8 +252,8 @@
     }
 
     .navbar .logo {
-        width: 60px; /* Adjust logo size for mobile */
-        height: 60px;
+        width: 40px; /* Adjust logo size for mobile */
+        height: 40px;
     }
 
     .navbar-right {
@@ -262,7 +262,7 @@
 
     .search-bar-form input {
         padding-left:0px;
-        width: 120px; /* Adjust search input width on mobile */
+        width: 100px; /* Adjust search input width on mobile */
     }
     .signinbutton{
         width: 60px;

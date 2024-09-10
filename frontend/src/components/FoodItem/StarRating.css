@@ -1,0 +1,30 @@
+.star-rating {
+    display: flex;
+    gap: 2px;
+  }
+  
+  .star {
+    font-size: 20px;
+    color: lightgray;  
+    position: relative;
+  }
+  
+  .star.full {
+    color: gold;  
+  }
+  
+   
+  .star.half {
+    color: lightgray;  
+    position: relative;
+  }
+  
+  .star.half::before {
+    content: '★';
+    color: gold;  
+    position: absolute;
+    left: 0;
+    width: 50%;
+    overflow: hidden;
+  }
+  

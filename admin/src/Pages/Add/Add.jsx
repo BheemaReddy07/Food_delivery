@@ -11,10 +11,19 @@ const Add = ({url}) => {
         description:"", 
         price:"",
         category:"Salad",
+        rate:""
     });
     const onChangeHandler=(event)=>{
          const name = event.target.name;
          const value = event.target.value;
+         if (value >= 0.5 && value <= 5) {
+            setData(prevState => ({
+              ...prevState,
+              [name]: parseFloat(value) // Convert the input to a floating-point number
+            }));
+          }
+        
+
          setData(data=>({...data,[name]:value}))
     }
     const onSubmitHandler = async (event) =>{
@@ -29,6 +38,8 @@ const Add = ({url}) => {
            formData.append("price",Number(data.price))
            formData.append("category",data.category)
            formData.append("image",image)
+           formData.append("rate", Number(data.rate));
+
            const response = await axios.post(`${url}/api/food/add`,formData);
            if(response.data.success){
                 setData({
@@ -36,6 +47,7 @@ const Add = ({url}) => {
                     description:"",
                     price:"",
                     category:"Salad",
+                    rate:""
                 })
                 setImage(false)
                 toast.success(response.data.message)
@@ -88,6 +100,12 @@ const Add = ({url}) => {
                     <p>Product price</p>
                     <input onChange={onChangeHandler} value={data.price} type="Number" name='price'placeholder='price' required/>
                 </div>
+               <div className='add-price flex-col'>
+               <p>Product Rating</p>
+                    <input onChange={onChangeHandler} value={data.rate} type="Number" name='rate'placeholder='Rating' required  min="0.5" max="5"  step="0.5" />
+                
+
+               </div>
             </div>
             <button type='submit' className='add-btn'>ADD</button>
         </form>

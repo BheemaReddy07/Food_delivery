@@ -14,6 +14,7 @@ const Drawer = ({ isOpen, onClose }) => {
 
 
   const handleNavigation = (path, scrollTo) => {
+    
     navigate(path, { state: { scrollTo } });
     onClose();
 
@@ -77,7 +78,7 @@ const logout = ()=>{
           <li><Link to="/Order" onClick={onClose}><ShoppingOutlined />Place Order</Link></li>
           {(accountOut)   && ( 
             <>
-          <li><InboxOutlined />orders</li>
+          <li><Link to="/myorders" onClick={onClose}><InboxOutlined />My Orders</Link></li>
           <li><Link to="/" onClick={()=>{onClose(),logout();}}><LogoutOutlined />Logout</Link></li>
           </> 
           )}

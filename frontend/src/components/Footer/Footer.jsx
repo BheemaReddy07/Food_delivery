@@ -27,12 +27,12 @@ const Footer = () => {
               <div className='footer-content-right'>
                   <h2>GET IN TOUCH</h2>
                   <ul>
-                      <li><a href='mailto:r@rguktong.ac.in'>yaswanth@gmail.com</a></li>
+                      <li><a href='mailto:ro200366@rguktong.ac.in'>yaswanth@gmail.com</a></li>
                       <li> +91 99921 12345</li>
-                      <li><a href='mailto:r@rguktong.ac.in'>Gnana@gmail.com</a></li>
-                      <li><a href='mailto:r@rguktong.ac.in'>Charishma@gmail.com</a></li>
-                      <li><a href='mailto:r@rguktong.ac.in'>Sravani@gmail.com</a></li>
-                      <li><a href='mailto:r@rguktong.ac.in'>BheemaReddy@gmail.com</a></li>
+                      <li><a href='mailto:ro200611@rguktong.ac.in'>Gnana@gmail.com</a></li>
+                      <li><a href='mailto:ro200980@rguktong.ac.in'>Charishma@gmail.com</a></li>
+                      <li><a href='mailto:ro200369@rguktong.ac.in'>Sravani@gmail.com</a></li>
+                      <li><a href='mailto:ro200817@rguktong.ac.in'>BheemaReddy@gmail.com</a></li>
                      
                       
                       <li>company@DineNow.com</li>

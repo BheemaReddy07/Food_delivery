@@ -35,8 +35,8 @@ const Navbar = ({ setShowLogin }) => {
         const img = decodedToken.profileImage;   
         setUserName(decodedToken.name);
   
+        const baseUrl = `${url}/profiles`;
         
-        const baseUrl = "http://localhost:4000/profiles";  
         const profileImageUrl = img ? `${baseUrl}/${img}` : assets.profile_icon; 
         setProfileImage(profileImageUrl);
   

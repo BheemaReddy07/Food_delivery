@@ -5,8 +5,8 @@ import validator from "validator";
 import nodemailer from "nodemailer";
 
 // Function to create JWT token
-const createToken = (id,name,profileImage) => {
-    return jwt.sign({ id,name,profileImage }, process.env.JWT_SECRET);
+const createToken = (id,name,profileImage,email) => {
+    return jwt.sign({ id,name,profileImage,email }, process.env.JWT_SECRET);
 };
 
 // Function to generate a random OTP
@@ -19,13 +19,13 @@ const sendOTPEmail = async (email, otp,name) => {
     const transporter = nodemailer.createTransport({
         service: 'Gmail',
         auth: {
-            user: "email",
-            pass: 'app password',
+            user: "dinenow2024@gmail.com",
+            pass: 'jrzs yvql zlbd mljg',
         },
     });
 
     const mailOptions = {
-        from: 'email',
+        from: 'dinenow2024@gmail.com',
         to: email,
         subject: 'Your OTP code',
         text: `Hi ${name}!! Greetings from the dineNow ,here is Your OTP code is: ${otp}`,
@@ -121,7 +121,7 @@ const verifyOTPAndRegister = async (req, res) => {
         });
 
         // Create a token and respond
-        const token = createToken(user._id,user.name,user.profileImage);
+        const token = createToken(user._id,user.name,user.profileImage,user.email);
         res.json({ success: true, token, message: 'Registration successful' });
     } catch (error) {
         console.error("Error verifying OTP!!:", error);
@@ -143,7 +143,7 @@ const loginUser = async (req, res) => {
             return res.json({ success: false, message: "Invalid password" });
         }
 
-        const token = createToken(user._id,user.name,user.profileImage);
+        const token = createToken(user._id,user.name,user.profileImage,user.email);
         res.json({ success: true, token });
     } catch (error) {
         console.log(error);
