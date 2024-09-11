@@ -120,10 +120,21 @@ const updateStatus = async (req,res) =>{
 }
 
 
+const updateDeliveryNotifications = async (req,res) =>{
+    const {orderId} = req.body;
+    try {
+        await orderModel.findByIdAndUpdate(orderId,{notified:true});
+        res.json({success:true,message:"Notification status updated"})
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ success: false, message: "Error updating notification status." });
+    
+    }
+
+}
 
 
 
 
 
-
-export  {placeOrder,verifyOrder,userOrders,listOrders,updateStatus};
+export  {placeOrder,verifyOrder,userOrders,listOrders,updateStatus,updateDeliveryNotifications};

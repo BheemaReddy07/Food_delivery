@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect,  useState } from 'react'
 import "./MyOrders.css"
 import { StoreContext } from "../../Context/StoreContext"
 import axios from "axios";
@@ -10,12 +10,15 @@ const MyOrders = () => {
 
 
   const fetchOrders = async () => {
-    const response = await axios.post(url + "/api/order/userorders", {}, { headers: { token } })
+    const response = await axios.post(url + "/api/order/userorders", 
+      {},  // Add userId to the request body
+      { headers: { token } }
+    );
     setData(response.data.data);
+}
 
-  }
 
-  const notifiedOrders = useRef(new Set());
+   
 
 
   const formatDate = (dateString) => {
@@ -35,7 +38,7 @@ const MyOrders = () => {
     }
 
   }
-  
+  /*
   const playDeliveryNotificationSound = () => {
     const audio = new Audio(assets.deliveryNotification);
     audio.loop = false;
@@ -44,7 +47,7 @@ const MyOrders = () => {
       console.error('Error playing the notification sound:', error);
     });
   }
-
+*/
   //  // Effect to monitor the data and check for delivered orders
 
   useEffect(() => {
@@ -57,6 +60,7 @@ const MyOrders = () => {
 
   //effect to make notification when the status is deliverd
 
+  /*
   useEffect(() => {
 
     data.forEach((order) => {
@@ -66,6 +70,7 @@ const MyOrders = () => {
       }
     });
   }, [data]);
+*/
 
 
   return (
@@ -88,7 +93,7 @@ const MyOrders = () => {
               <p>₹{order.amount}.00</p>
               <p>Items:{order.items.length}</p>
               <p><span className={`${getStatusClass(order.status)}`}>&#x25cf;</span><b>{order.status}</b></p>
-              <button onClick={fetchOrders}>Track Order</button>
+              
             </div>
           )
 
