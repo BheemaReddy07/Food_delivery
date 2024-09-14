@@ -1,0 +1,22 @@
+.background-image{
+    width: 100vw;       /* Full viewport width */
+    height: 100vh;      /* Full viewport height */
+    background-image: url('/back.png');
+    background-size: cover;      /* Ensure the background image covers the entire area */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat;
+    
+}
+
+
+@media (max-width:1000px) {
+    .background-image{
+        width: 100vw;
+        height: 100vh;
+        background-image: url("/back1.jpeg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    
+}

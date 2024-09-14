@@ -22,6 +22,7 @@
     --dropdown-color:black;
     --username-toolpit-bg:white;
     --username-toolpit-color:black;
+    --myorder-text-color:black;
 }
 
 .dark {
@@ -46,6 +47,8 @@
     --dropdown-color:black;
     --username-toolpit-bg:black;
     --username-toolpit-color:white;
+    --myorder-text-color:white;
+
 }
 
 body {
@@ -160,6 +163,13 @@ body {
 .eye-icon{
     color: var(--password-toggle);
 }
+.my-orders .container p{
+    color: var(--myorder-text-color);
+}
+.my-orders .container b{
+    color: var(--myorder-text-color);
+}
+
 
 * {
     padding: 0;

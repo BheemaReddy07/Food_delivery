@@ -1,5 +1,5 @@
 import express from "express";
-import { loginUser, requestOTP, verifyOTPAndRegister,requestForgetPasswordOTP,resetPassword } from "../controllers/userController.js";
+import { loginUser, requestOTP, verifyOTPAndRegister,requestForgetPasswordOTP,resetPassword, adminLoginCheck } from "../controllers/userController.js";
 import multer from "multer";
 
 
@@ -24,5 +24,5 @@ userRouter.post("/register/verify-otp", verifyOTPAndRegister);
 userRouter.post("/login", loginUser);
 userRouter.post("/forgot/request-otp",requestForgetPasswordOTP);
 userRouter.post("/forgot/reset",resetPassword);
-
+userRouter.post("/adminlogin",adminLoginCheck);
 export default userRouter;

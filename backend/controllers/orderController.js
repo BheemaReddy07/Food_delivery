@@ -7,7 +7,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 
 //placing userorder from frontend 
 const placeOrder =async (req,res) =>{
-    const frontend_url = "http://192.168.198.22:5173"
+    const frontend_url = "http://192.168.244.22:5173"
     try {
         const newOrder = new orderModel({
             userId:req.body.userId,

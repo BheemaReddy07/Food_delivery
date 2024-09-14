@@ -1,19 +1,70 @@
-.verify{
+.verify {
     min-height: 60vh;
-    display: grid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.verify .spinner{
-    width:100px;
+
+.verify-check {
+    padding-top: 120px;
+    text-align: center;
+}
+
+.verify .spinner {
+    width: 100px;
     height: 100px;
-    place-self: center;
+    margin: 0 auto;
     border: 5px solid #bdbdbd;
     border-top-color: tomato;
     border-radius: 50%;
     animation: rotate 1s infinite;
 }
+
 @keyframes rotate {
-    
-    100%{
+    100% {
         transform: rotate(360deg);
+    }
+}
+
+.confirmation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeIn 0.5s ease-in;
+}
+
+.confirmation h2 {
+    font-size: 24px;
+    color: #28a745; /* Success color */
+    margin-bottom: 20px;
+}
+
+.confirmation .proceed-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #28a745; /* Green for success */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.confirmation .proceed-button:hover {
+    background-color: #218838;
+}
+
+.error {
+    color: red;
+    text-align: center;
+    font-size: 20px;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
     }
 }

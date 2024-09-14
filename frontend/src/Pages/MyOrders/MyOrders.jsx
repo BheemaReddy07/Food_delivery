@@ -24,6 +24,7 @@ const MyOrders = () => {
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     return date.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
+
   }
 
 

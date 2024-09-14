@@ -8,7 +8,10 @@ import nodemailer from "nodemailer";
 const createToken = (id,name,profileImage,email) => {
     return jwt.sign({ id,name,profileImage,email }, process.env.JWT_SECRET);
 };
-
+//Function to create the Admin JWT token
+const createAdminToken = (id) =>{
+    return jwt.sign({id},process.env.JWT_SECRET)
+}
 // Function to generate a random OTP
 const generateOTP = () => {
     return Math.floor(100000 + Math.random() * 900000).toString();
@@ -19,13 +22,13 @@ const sendOTPEmail = async (email, otp,name) => {
     const transporter = nodemailer.createTransport({
         service: 'Gmail',
         auth: {
-            user: "dinenow2024@gmail.com",
-            pass: 'jrzs yvql zlbd mljg',
+            user:  process.env.USER_EMAIL,
+            pass:  process.env.USER_APPCODE,
         },
     });
 
     const mailOptions = {
-        from: 'dinenow2024@gmail.com',
+        from: process.env.USER_EMAIL,
         to: email,
         subject: 'Your OTP code',
         text: `Hi ${name}!! Greetings from the dineNow ,here is Your OTP code is: ${otp}`,
@@ -253,4 +256,23 @@ const cleanupExpiredUsers = async (req,res) =>{
 const HOUR = 5 * 60 *1000;
 setInterval(cleanupExpiredUsers,HOUR);
 
-export { loginUser, requestOTP, verifyOTPAndRegister,requestForgetPasswordOTP ,resetPassword };
+//admin login check
+
+
+const adminLoginCheck = async (req, res) => {
+    const { email, password } = req.body;
+    try {
+        if ( process.env.ADMIN_EMAIL === email && process.env.ADMIN_PASSWORD === password) {
+            const adminToken = createAdminToken(email); // Using admin email as ID
+            res.json({ success: true,  adminToken, message: 'Login successful' });
+        } else {
+            res.json({ success: false, message: 'Login failed' });
+        }
+    } catch (error) {
+        console.log(error);
+        res.json({ success: false, message: 'Login failed' });
+    }
+};
+
+
+export { loginUser, requestOTP, verifyOTPAndRegister,requestForgetPasswordOTP ,resetPassword ,adminLoginCheck };

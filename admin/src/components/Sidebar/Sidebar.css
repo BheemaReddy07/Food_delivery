@@ -4,6 +4,8 @@
     border: 1.5px solid #a9a9a9;
     border-top: 0;
     font-size: max(1vw,10px);
+    background-color: aliceblue;
+     
 }
 
 .sidebar-options{
@@ -28,8 +30,13 @@
     background-color: #fff0ed;
     border-color: tomato;
 }
+
 @media (max-width:900px){
     .sidebar-option p{
         display: none;
+    }
+    .plus{
+        width: 35px;
+        height: 35px;
     }
 }

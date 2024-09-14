@@ -11,8 +11,9 @@ const StoreContextProvider = (props) => {
     const [cartItems, setCartItems] = useState({});
     const [searchQuery, setSearchQuery] = useState("");
     const [orders, setOrders] = useState([]);
+   
     
-    const url = "http://192.168.198.22:4000"
+    const url = "http://192.168.244.22:4000"
     
 
 
