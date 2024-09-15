@@ -14,7 +14,9 @@ const placeOrder =async (req,res) =>{
             items:req.body.items,
             amount:req.body.amount,
             address:req.body.address
+             
         })
+        
         await newOrder.save();
         await userModel.findByIdAndUpdate(req.body.userId,{cartData:{}});
 
@@ -60,27 +62,31 @@ const placeOrder =async (req,res) =>{
 
 const verifyOrder = async (req,res) =>{
     const {orderId,success}  =  req.body;
+    console.log("Order ID:", orderId);
+    console.log("Payment Success:", success);
+
     try {
         if(success=="true"){
             await orderModel.findByIdAndUpdate(orderId,{payment:true});
-            res.json({success:true,message:"Paid"})
+            res.json({success:true,message:"Payment Successful, Order Confirmed"})
         }
         else{
             await orderModel.findByIdAndDelete(orderId);
-            res.json({success:false,message:"Not Paid"});
+            res.json({success:false,message:"Payment Failed, Order Canceled"});
         }
         
     } catch (error) {
         console.log(error);
-        res.json({success:false,message:"Error"})
+        res.json({success:false,message:"Error verifying order." })
     }
 
 }
 
 //user order for frontend
 const userOrders = async (req,res)=>{
+ 
     try {
-        const orders = await orderModel.find({userId:req.body.userId}).sort({ createdAt: -1 });
+        const orders = await orderModel.find({userId:req.body.userId ,payment:true }).sort({ createdAt: -1 });
         res.json({success:true,data:orders})
     } catch (error) {
         console.log(error);
@@ -94,7 +100,7 @@ const userOrders = async (req,res)=>{
 //list orders for admin panel
 const listOrders = async (req,res) =>{
     try {
-        const orders = await orderModel.find({}).sort({ createdAt: -1 });
+        const orders = await orderModel.find({payment:true}).sort({ createdAt: -1 });
         res.json({success:true,data:orders})
     } catch (error) {
         console.log(error)
@@ -120,6 +126,7 @@ const updateStatus = async (req,res) =>{
 }
 
 
+//order delivered notifications
 const updateDeliveryNotifications = async (req,res) =>{
     const {orderId} = req.body;
     try {
@@ -133,8 +140,24 @@ const updateDeliveryNotifications = async (req,res) =>{
 
 }
 
+// deleting the failed orders
+const deleteFailedOrders = async (req,res) =>{
+    try {
+        const now =  Date.now();
+        const fiveMinutes  =  new Date(now - 5 * 60 * 1000);
+         const failedOrders  = await orderModel.deleteMany({
+            payment:{$ne:true},
+            createdAt:{$lt:fiveMinutes}
+        })
+        
+    } catch (error) {
+        console.error("Error cleaning up cancelled orders:", error);
+    }
 
+}
 
+const cleanUp = 60*1000;
+setInterval(deleteFailedOrders,cleanUp);
 
 
 export  {placeOrder,verifyOrder,userOrders,listOrders,updateStatus,updateDeliveryNotifications};
