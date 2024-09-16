@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 
 const App = () => {
   const [adminToken, setAdminToken] = useState(null);  // Track loading state with null
-  const url = "http://192.168.244.22:4000";
+  const url = "http://localhost:4000";
   const navigate = useNavigate();
 
   // Fetch the token from localStorage on component mount

@@ -37,11 +37,39 @@
 
 .admin-login input {
     width: 100%;
-    padding: 10px;
+    padding: 10px 40px 10px 10px; /* Adjust right padding to make room for the icon */
     margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 4px;
+    box-sizing: border-box;
 }
+/* Container to position the input and eye icon together */
+.input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+/* Eye icon styles */
+.eye-icon {
+    position: absolute;
+    right: 10px; /* Adjust spacing from the right edge */
+    top: 50%; /* Aligns vertically in the middle of the input field */
+    transform: translateY(-50%); /* Adjusts icon position vertically */
+    cursor: pointer;
+    font-size: 18px; /* Icon size */
+    color: #808080; /* Neutral icon color */
+    opacity: 0.7; /* Slight transparency for a modern look */
+    transition: opacity 0.2s ease; /* Smooth hover effect */
+}
+
+/* On hover, increase visibility */
+.eye-icon:hover {
+    opacity: 1;
+}
+
+/* Input field styling */
+
+
 
 .admin-login button {
     padding: 10px 20px;
@@ -87,6 +115,7 @@
     color: red;
     font-size: 14px;
 }
+ 
 @media (max-width:1000px){
     .admin-login button {
         padding: 10px 20px;

@@ -20,15 +20,24 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    border: 1px solid #a9a9a9;
+    border: 1px solid rgb(68, 103, 134);
     border-right: 0;
     padding: 8px 10px;
     border-radius: 3px 0px 0px 3px;
     cursor: pointer;
+    background-color: rgb(133, 186, 233);
 }
 .sidebar-option.active{
     background-color: #fff0ed;
     border-color: tomato;
+}
+.orderparcel-icon{
+    width:35px ;
+    height: 35px;
+}
+.plus{
+    width:35px ;
+    height: 35px;
 }
 
 @media (max-width:900px){

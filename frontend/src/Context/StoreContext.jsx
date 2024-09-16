@@ -13,7 +13,7 @@ const StoreContextProvider = (props) => {
     const [orders, setOrders] = useState([]);
    
     
-    const url = "http://192.168.244.22:4000"
+    const url = "http://localhost:4000"
     
 
 

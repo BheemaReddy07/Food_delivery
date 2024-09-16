@@ -3,11 +3,15 @@ import "./AdminLogin.css"
 import axios from "axios"
 import { assets } from '../../assets/assets'
 import { useNavigate } from "react-router-dom"
+import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
 const AdminLogin = ({ url }) => {
     const [email, setEmail] = useState("");
     const [password, SetPassword] = useState("")
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState('');
+    const [view, setview] = useState(false)
+
+
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -44,12 +48,20 @@ const AdminLogin = ({ url }) => {
                 <form onSubmit={handleLogin}>
                     <label className='label'>Email</label>
                     <input required type='email' name='email' value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Enter the Email' />
+
                     <label className='label'>Password</label>
-                    <input required type='password' name='password' value={password} onChange={(e) => SetPassword(e.target.value)} placeholder='Enter the Password' />
+                    <div className="input-wrapper">
+                        <input required name='password' value={password} onChange={(e) => SetPassword(e.target.value)} placeholder='Enter the Password' type={view ? "text" : "password"} />
+                        {view
+                            ? <EyeOutlined className='eye-icon' onClick={() => setview(false)} />
+                            : <EyeInvisibleOutlined className='eye-icon' onClick={() => setview(true)} />
+                        }
+                    </div>
+
                     {errorMessage && <p className='error-message'>{errorMessage}</p>}
                     <button type='submit'>Login</button>
-
                 </form>
+
 
 
             </div>
