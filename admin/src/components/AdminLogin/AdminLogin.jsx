@@ -23,6 +23,7 @@ const AdminLogin = ({ url }) => {
                 localStorage.setItem("adminToken", adminToken);
                 navigate("/");
                 window.location.reload();
+                alert("Login Successfully...")
             }
             else {
                 console.log(response.data.message, "error during login");
