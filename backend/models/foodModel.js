@@ -1,7 +1,7 @@
 import   mongoose   from "mongoose";
 
 
-const foodSchema = new mongoose.Schema({
+const foodSchema = new mongoose.Schema({  //creating the food item model
     name:{type:String,required:true},
     description:{type:String,required:true},
     price:{type:Number,required:true},

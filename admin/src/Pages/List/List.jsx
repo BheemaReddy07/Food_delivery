@@ -2,21 +2,22 @@ import React, { useEffect, useState } from 'react'
 import {toast} from "react-toastify"
 import axios from "axios"
 import './List.css'
-import { set } from 'mongoose';
-const List = ({url}) => {
+const List = ({url}) => {    //destructing the url from the app.jsx
     const [list,setList] = useState([]);
-     
 
-    const fecthList = async () =>{
-      const response = await axios.get(`${url}/api/food/list`);
+    //fuction to the list the all food items that are availble
+     const fecthList = async () =>{
+    const response = await axios.get(`${url}/api/food/list`);  //get method to gather the data from the database
      
       if(response.data.success){
-        setList(response.data.data)
+        setList(response.data.data)         //if response is success ,it set the response to the setList
       }
       else{
         toast.error("Error")
       }
     }
+
+    //funtion to remove the item form the list or database 
    const removeFood = async (foodId)=>{
      const response = await axios.post(`${url}/api/food/remove`,{id:foodId});
      await fecthList();
@@ -28,7 +29,7 @@ const List = ({url}) => {
      }
 
    }
-    useEffect(()=>{
+    useEffect(()=>{     //automatically fetches the list again and again after every change is made
       fecthList();
     },[])
 
@@ -43,7 +44,10 @@ const List = ({url}) => {
           <b>Price</b>
           <b>Action</b>
         </div>
-        {list.map((item,index)=>{
+
+        {/*here list is any array which contain the foodList,
+        takes the list from the fetchlist function,and navigates to every item using map method,index means looping like "i"*/}
+        {list.map((item,index)=>{    {/**item=current foodItem,index = current fooditem position */}
           return (
             <div key={index} className="list-table-format">
               <img src={`${url}/images/`+item.image}   />

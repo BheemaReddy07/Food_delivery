@@ -7,7 +7,7 @@ import { BrowserRouter } from 'react-router-dom'
 import StoreContextProvider, { StoreContext } from './Context/StoreContext.jsx'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
-     <StoreContextProvider>
+     <StoreContextProvider>     
         <App/> 
     </StoreContextProvider>
 

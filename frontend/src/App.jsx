@@ -14,18 +14,18 @@ import Verify from './Pages/Verify/Verify';
 import MyOrders from './Pages/MyOrders/MyOrders';
 
 const App = () => {
-  const [showLogin, setShowLogin] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);  //setting the showlogin state false by default
    
 
-  return (
-    <ThemeProvider>
-        <ToastContainer />
-      
+  return ( 
+    <ThemeProvider>    {/* theme*/}
+        <ToastContainer />   {/**toast notification */}
        
-      {showLogin && <LoginPopup setShowLogin={setShowLogin} />}
+       
+      {showLogin && <LoginPopup setShowLogin={setShowLogin} />}   {/**if showlogin true it shows showlogin and setshowlogin sending as a prop */}
       <div>
         <div className="app">
-            <Navbar setShowLogin={setShowLogin} />
+            <Navbar setShowLogin={setShowLogin} /> {/**sending the setShowLOgin as a props */}
             <hr />
             <Routes>
               <Route path="/" element={<Home />} />

@@ -4,7 +4,7 @@ import { assets } from '../../assets/assets'
 import {useNavigate} from "react-router-dom"
 import {toast} from "react-toastify"
 const Navbar = () => {
-  const adminToken = localStorage.getItem("adminToken");
+  const adminToken = localStorage.getItem("adminToken");   //taking the AdminToken from the local storage
   const navigate = useNavigate();
   const homeGo = () =>{
     navigate("/")
@@ -12,12 +12,15 @@ const Navbar = () => {
   const handleProfileClick = () =>{
     navigate("/admin-login")
   }
+
+  //handling the login function
   const handleLogout =  () =>{
     localStorage.removeItem("adminToken");
     navigate("/");
     window.location.reload();
     alert("Logout successfully");
   }
+  
   return (
     <div className='navbar'>
         <img className='logo' src={assets.logo} alt="" onClick={homeGo}  />

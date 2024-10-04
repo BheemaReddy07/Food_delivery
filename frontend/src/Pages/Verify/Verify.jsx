@@ -7,12 +7,14 @@ import axios from 'axios';
 import {toast} from "react-toastify"
 const Verify = () => {
     const [searchParams,setSearchParams] = useSearchParams();
-    const success = searchParams.get("success");
-    const orderId = searchParams.get("orderId");
+    const success = searchParams.get("success");  //this is searching the params from the url bar in the browser with success attribute
+    const orderId = searchParams.get("orderId");  //this is searching the params from the url bar in the browser with orderId attribute
     const {url} =useContext(StoreContext);
     const navigate = useNavigate();
-    const [isVerified,setIsVerified] = useState(false);
+    const [isVerified,setIsVerified] = useState(false);  //state to check the order is verif
     const [error, setError] = useState(null);
+    
+    //function to play the notification sound on order placing
     const playNotificationSound = () =>{
         console.log('Playing order placed notification sound'); 
         const audio = new Audio(assets.notification);
@@ -22,21 +24,20 @@ const Verify = () => {
             console.error('Error playing the notification sound:', error);
           });
     }
+
+    //function to verify the payment
     const verifyPayment = async () =>{
       try {
         const response = await  axios.post(url+"/api/order/verify",{success,orderId});
         
         console.log('Payment verification response:', response.data); 
         if(response.data.success){
-            setIsVerified(true);
+            setIsVerified(true);   //if payment is success the verified is set to true
            toast.success("Order Placed...")
-           
-
         }
         else{
             setError("Verification failed. Redirecting...");
             setTimeout(() => navigate("/"), 3000); // Redirect after a delay if verification fails
-        
         }
       } catch (error) {
         setError("Error verifying the order. Redirecting...");

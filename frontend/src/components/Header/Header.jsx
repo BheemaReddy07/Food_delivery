@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Header.css';
-
+// setting an array of images with details for animation
 const headers = [
     {
       image: "/t1.jpg",
@@ -149,9 +149,9 @@ const headers = [
   ];
 
 const Header = () => {
-  const [currImageIndex, setCurrImageIndex] = useState(0);
-  const [fadeIn, setFadeIn] = useState(true);
-
+  const [currImageIndex, setCurrImageIndex] = useState(0);  //setting the index for the header images to changes for every predifined intervel
+  const [fadeIn, setFadeIn] = useState(true);   //image transition effect
+ //transition between images with fadein 
   useEffect(() => {
     const interval = setInterval(() => {
       setFadeIn(false); // Start fading out

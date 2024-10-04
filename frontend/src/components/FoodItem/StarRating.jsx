@@ -1,15 +1,16 @@
 import React from 'react';
 import './StarRating.css'; // We'll style the stars in this file
 
-const StarRating = ({ rating }) => {
+const StarRating = ({ rating }) => { //getting the rating from the foodItem.jsx
+  //function to create the stars
   const renderStars = () => {
-    const stars = [];
+    const stars = []; //takinng an empty array with variable name stars
     const fullStars = Math.floor(rating); // Full stars to render
     const hasHalfStar = rating % 1 !== 0; // Check if there's a half star
 
     // Add full stars
     for (let i = 1; i <= fullStars; i++) {
-      stars.push(
+      stars.push( //pushing the full stars
         <span key={i} className="star full">
           ★
         </span>
@@ -35,7 +36,7 @@ const StarRating = ({ rating }) => {
       );
     }
 
-    return stars;
+    return stars; //returning the star values
   };
 
   return <div className="star-rating">{renderStars()}</div>;

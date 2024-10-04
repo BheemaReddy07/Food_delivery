@@ -3,16 +3,19 @@ import './Add.css'
 import { assets } from '../../assets/assets'
 import axios from "axios"
 import { toast } from 'react-toastify'
-const Add = ({url}) => {
-     
-    const [image,setImage] = useState(false);
-    const [data,setData] = useState({
+
+//adding the ADD function
+const Add = ({url}) => {          //destructing the url from the app.jsx
+    const [image,setImage] = useState(false);    //state for the image
+    const [data,setData] = useState({            //state for the data storage ,predined set the empty
         name:"",
         description:"", 
         price:"",
         category:"Salad",
         rate:""
     });
+
+    //changes made in the form reflects 
     const onChangeHandler=(event)=>{
          const name = event.target.name;
          const value = event.target.value;
@@ -22,26 +25,26 @@ const Add = ({url}) => {
               [name]: parseFloat(value) // Convert the input to a floating-point number
             }));
           }
-        
-
-         setData(data=>({...data,[name]:value}))
+        setData(data=>({...data,[name]:value}))        //assigning the data to the values.
     }
+
+    //function for on submission
     const onSubmitHandler = async (event) =>{
            event.preventDefault();
-           if (!data.name || !data.description || !data.price || !image) {
+           if (!data.name || !data.description || !data.price || !image) {    //checking the all values are entered or not
             toast.error("Please fill all fields and upload an image");
             return;
         }
-           const formData = new FormData();
-           formData.append("name",data.name)
-           formData.append("description",data.description)
-           formData.append("price",Number(data.price))
+           const formData = new FormData();      // creating the form data
+           formData.append("name",data.name)                   //adding the data to the form data
+           formData.append("description",data.description)     //adding the data to the form data
+           formData.append("price",Number(data.price))         //adding the data to the form data
            formData.append("category",data.category)
            formData.append("image",image)
            formData.append("rate", Number(data.rate));
 
            const response = await axios.post(`${url}/api/food/add`,formData);
-           if(response.data.success){
+           if(response.data.success){          //changes made after successful submission
                 setData({
                     name:"",
                     description:"",
@@ -49,7 +52,7 @@ const Add = ({url}) => {
                     category:"Salad",
                     rate:""
                 })
-                setImage(false)
+                setImage(false)       //changed to false state after submission          
                 toast.success(response.data.message)
            }
            else{

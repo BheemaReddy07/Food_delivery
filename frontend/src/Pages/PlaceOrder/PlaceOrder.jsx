@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react'
 import './PlaceOrder.css'
 import { StoreContext } from '../../Context/StoreContext'
 import axios from "axios";
-import { jwtDecode } from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
 const PlaceOrder = () => {
   const {getTotalCartAmount,token,food_list,cartItems,url} =useContext(StoreContext)
@@ -26,23 +25,23 @@ const PlaceOrder = () => {
     
    const placeOrder = async  (event) =>{
     event.preventDefault();
-    let orderItems = [];
-    food_list.map((item)=>{
-      if(cartItems[item._id]>0){
-        let itemInfo =item;
+    let orderItems = [];  //default value for the order item
+    food_list.map((item)=>{    //traverse through the food_list,item refers to the each "item" in the list
+      if(cartItems[item._id]>0){  //if cart has items
+        let itemInfo =item;     //itemInfo assign the item,
         itemInfo["quantity"]=cartItems[item._id];
-        orderItems.push(itemInfo)
+        orderItems.push(itemInfo)  //adding to the order items
       }
     })
      console.log(orderItems)
-    let orderData = {
+    let orderData = {   //creating the orderdata with address,item list and amount
       address:data,
       items:orderItems,
       amount:getTotalCartAmount()+40,
     } 
-    let response = await axios.post(url+"/api/order/place",orderData,{headers:{token}})
+    let response = await axios.post(url+"/api/order/place",orderData,{headers:{token}})  //send the data to the backend
     if(response.data.success){
-      const {session_url} =response.data;
+      const {session_url} =response.data;  //getting the session url from the response that is from the orderController.js
       window.location.replace(session_url);
     }
     else{
@@ -52,11 +51,11 @@ const PlaceOrder = () => {
    }
  const navigate = useNavigate();
 
-   useEffect(()=>{
+   useEffect(()=>{  //if user is not logged in it navigates to cart
      if(!token){
         navigate("/cart")
      }
-     else if(getTotalCartAmount()==0){
+     else if(getTotalCartAmount()==0){ //if cart is empty ,it navigates to the cart 
       navigate("/cart")
      }
    },[token])

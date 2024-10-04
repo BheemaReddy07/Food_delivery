@@ -3,17 +3,19 @@ import './FoodDisplay.css';
 import { StoreContext } from '../../Context/StoreContext';
 import FoodItem from '../FoodItem/FoodItem';
 
-const FoodDisplay = ({ category }) => {
-    const { food_list, searchQuery } = useContext(StoreContext);
-    const [sortOrder,setSortOrder] = useState("");
+const FoodDisplay = ({ category }) => {    //destructing the
+    const { food_list, searchQuery } = useContext(StoreContext);  //getting the food_list from the Storecontext
+    const [sortOrder,setSortOrder] = useState("");   //for the sorting based on the price
 
-    // Filter items based on category and search query
-    const filteredItems = food_list.filter((item) => {
-        const matchesCategory = category === "All" || item.category.toLowerCase().includes(category.toLowerCase());
-        const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase()) || item.category.toLowerCase().includes(searchQuery.toLowerCase());
+    // Filter items based on category and search query\
+     
+    const filteredItems = (food_list || []).filter((item) => {     
+        const matchesCategory = category === "All" || item.category.toLowerCase().includes(category.toLowerCase());  //it for onclicking on the menu list 
+        const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase()) || item.category.toLowerCase().includes(searchQuery.toLowerCase()); //it is for the searchbar
         return matchesCategory && matchesSearch;
     });
-
+   
+    //function to sort the item based on the price
     const sortedItems = [...filteredItems].sort((a,b)=>{
          if(sortOrder==='lowToHigh'){
             return a.price - b.price;
@@ -26,6 +28,7 @@ const FoodDisplay = ({ category }) => {
          }
     });
 
+    
     const handleSortChange = (event) => {
         setSortOrder(event.target.value);
     };
@@ -44,8 +47,8 @@ const FoodDisplay = ({ category }) => {
             <div className='food-display-list'>
                 {sortedItems.length > 0 ? (
                     sortedItems.map((item, index) => (
-                        <FoodItem key={index} id={item._id} name={item.name} description={item.description} price={item.price} image={item.image} rate={item.rate} />
-                    ))
+                        <FoodItem key={index} id={item._id} name={item.name} description={item.description} price={item.price} image={item.image} rate={item.rate} /> /** sending the id,name,description,price,image,rate as props for the FoodItem.jsx */
+                    )) 
                 ) : (
                     <p>No items found</p>
                 )}

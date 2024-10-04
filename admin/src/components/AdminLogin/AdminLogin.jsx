@@ -11,10 +11,10 @@ const AdminLogin = ({ url }) => {
     const [errorMessage, setErrorMessage] = useState('');
     const [view, setview] = useState(false)
 
-
-
+   
+     //admin login handle fuctions 
     const handleLogin = async (e) => {
-        e.preventDefault();
+        e.preventDefault();   // prevents loading 
         try {
             const response = await axios.post(`${url}/api/user/adminlogin`,
                 { email, password })
@@ -35,6 +35,8 @@ const AdminLogin = ({ url }) => {
         }
     }
 
+
+    //closing the loginpopup
     const onCrossClick = () => {
         navigate("/")
     }

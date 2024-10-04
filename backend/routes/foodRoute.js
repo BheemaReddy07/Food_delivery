@@ -19,12 +19,8 @@ const storage = multer.diskStorage({
 })
 
 const upload = multer({storage:storage})
-foodRouter.post("/add",upload.single("image") ,addFood)
-foodRouter.get("/list" ,listFood)
-foodRouter.post("/remove" ,removeFood)
+foodRouter.post("/add",upload.single("image") ,addFood) //router to route the add the foodItem from the admin panel
+foodRouter.get("/list" ,listFood) //router to fetch the list of food items in the admin panel
+foodRouter.post("/remove" ,removeFood) //router to remove the food item from the admin panel
 
-
-
-
-
-export default foodRouter;
+export default foodRouter; //exporting the foodRouter to server.js

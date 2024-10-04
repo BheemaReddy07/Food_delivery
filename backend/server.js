@@ -23,12 +23,12 @@ connectDB();
 
 
 //api endpoint
-app.use('/api/food',foodRouter)
-app.use('/profiles',express.static('uploads/profile/'))
-app.use("/images",express.static('uploads'))
-app.use("/api/user",userRouter)
-app.use("/api/cart",cartRouter)
-app.use("/api/order",orderRouter)
+app.use('/api/food',foodRouter)  //foodRouter api call
+app.use('/profiles',express.static('uploads/profile/')) //profile photo management
+app.use("/images",express.static('uploads')) 
+app.use("/api/user",userRouter) //userRouter api call
+app.use("/api/cart",cartRouter) //cartRouter api call
+app.use("/api/order",orderRouter) //orderRouter api call 
 app.get('/',(req,res)=>{
     res.send('API working...')
 

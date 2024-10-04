@@ -6,11 +6,13 @@ import { toast } from "react-toastify"
 import { useEffect } from 'react'
 import { assets } from "../../assets/assets"
 const Orders = ({ url }) => {
-  const [orders, setOrders] = useState([])
+  const [orders, setOrders] = useState([])    //state to handle the orders
+
+  //function to fetch the all orders from the database
   const fetchAllOrder = async () => {
-    const response = await axios.get(url + "/api/order/list");
+    const response = await axios.get(url + "/api/order/list"); //response from the backend
     if (response.data.success) {
-      setOrders(response.data.data);
+      setOrders(response.data.data);     //if response is success ,the orders are assign to "orders" variable
       console.log(response.data.data)
     }
     else {
@@ -19,25 +21,26 @@ const Orders = ({ url }) => {
     }
 
   }
-
+    //function to handle delivery status of the order
   const statusHandler = async (event,orderId) =>{
      const response = await axios.post(url+"/api/order/status",{
-      orderId,
+      orderId,                   //providing the orderId and status ,status through the selection menu
       status:event.target.value
      })
      if(response.data.success){
-      await fetchAllOrder();
+      await fetchAllOrder();    //on success response it fetches this function again
      }
 
   }
 
+  //function to change the date from UTC to IST
   const formatDate = (dateString)=>{
     const date = new Date(dateString);
     return date.toLocaleString()
    }
 
 
-
+//it fetches the order for every 25 seconds
   useEffect(() => {
     fetchAllOrder();
     const intervelId = setInterval(fetchAllOrder, 25000);
@@ -53,14 +56,14 @@ const Orders = ({ url }) => {
     <div className='order add'>
       <h3>Order Page</h3>
       <div className="order-list">
-        {orders.map((order, index) => (
+        {orders.map((order, index) => (                   /* traverse through orders array ,order defines the particular order in the orders array and index represents position */
           <div key={index} className='order-item'>
             <img src={assets.parcel_icon} alt="" />
             <p>{formatDate(order.date)}</p>
             <div>
               
-              <p className='order-item-food'>
-                {order.items.map((item, index) => {
+              <p className='order-item-food'>             
+                {order.items.map((item, index) => {          /*traversing the items on the each order */
                   if (index === order.items.length - 1) {
                     return item.name + " x " + item.quantity
                   }

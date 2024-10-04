@@ -13,21 +13,21 @@ import { useNavigate } from "react-router-dom";
 
 const App = () => {
   const [adminToken, setAdminToken] = useState(null);  // Track loading state with null
-  const url = "http://localhost:4000";
-  const navigate = useNavigate();
+  const url = "http://localhost:4000";   //this url sends as a props for the all sections
+  const navigate = useNavigate();        //use to navigate
 
   // Fetch the token from localStorage on component mount
   useEffect(() => {
-    const token = localStorage.getItem("adminToken");
+    const token = localStorage.getItem("adminToken");   //taking the adminToken from localstorage if available
     setAdminToken(token || '');  // Set token or empty string if no token exists
   }, []);
 
   // Handle login success and update token
   const handleLoginSuccess = (token) => {
-    localStorage.setItem('adminToken', token);
+    localStorage.setItem('adminToken', token);  // setting the adminToken on localstorage after login
     setAdminToken(token); // Update the state to reflect the token change
     navigate('/'); // Navigate to home or some default protected page
-    window.location.reload();
+    window.location.reload();  //to reload by default after the action
   };
 
   // Handle logout by clearing the token from state and localStorage

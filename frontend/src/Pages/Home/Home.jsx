@@ -6,8 +6,8 @@ import FoodDisplay from '../../components/FoodDisplay/FoodDisplay'
 import AppDownload from '../../components/AppDownload/AppDownload'
 import {useLocation} from 'react-router-dom'
 const Home = () => {
-  const[category,setCategory]=useState("All");
-  const location = useLocation();
+  const[category,setCategory]=useState("All");   //setting all to show all menu items by default
+  const location = useLocation();   //using location to move to a particular location in the particular page
 
   useEffect(() => {
     if (location.state?.scrollTo) {
@@ -22,8 +22,8 @@ const Home = () => {
   return (
     <div>
       <Header/>
-      <ExploreMenu id='#explore-menu' category={category} setCategory={setCategory}/>
-      <FoodDisplay category={category}/>
+      <ExploreMenu id='#explore-menu' category={category} setCategory={setCategory}/>  {/**sending as props */}
+      <FoodDisplay category={category}/>   {/**sending as props */}
       <AppDownload id='#app-download'/>
     </div>
   )

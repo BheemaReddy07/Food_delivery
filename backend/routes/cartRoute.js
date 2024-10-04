@@ -6,10 +6,8 @@ const cartRouter = express.Router();
 
 
 
-cartRouter.post("/add",authMiddleware,addToCart)
-cartRouter.post("/remove",authMiddleware,removeFromCart)
-cartRouter.post("/get",authMiddleware,getCart)
+cartRouter.post("/add",authMiddleware,addToCart) //router to add the food item into the cart
+cartRouter.post("/remove",authMiddleware,removeFromCart) //router to remove the food item from the cart
+cartRouter.post("/get",authMiddleware,getCart) //router to get list of items from the cart 
 
-
-
-export default cartRouter;
+export default cartRouter; //router is exported to server.js

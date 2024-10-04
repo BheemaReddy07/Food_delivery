@@ -5,29 +5,29 @@ import axios from "axios";
 import { assets } from '../../assets/assets';
 const MyOrders = () => {
 
-  const [data, setData] = useState([]);
-  const { url, token } = useContext(StoreContext);
+  const [data, setData] = useState([]);   //handling the data value state
+  const { url, token } = useContext(StoreContext); //url and token from the context
 
-
+ //function to fetch the orders from the database
   const fetchOrders = async () => {
     const response = await axios.post(url + "/api/order/userorders", 
       {},  // Add userId to the request body
       { headers: { token } }
     );
-    setData(response.data.data);
+    setData(response.data.data); //sets the all orders of the token related
 }
 
 
    
 
-
+//function to format the date from UTC to IST
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     return date.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
 
   }
 
-
+ //method to find the status of the order
   const getStatusClass = (status) => {
     switch (status) {
       case 'Food Processing':
@@ -39,39 +39,19 @@ const MyOrders = () => {
     }
 
   }
-  /*
-  const playDeliveryNotificationSound = () => {
-    const audio = new Audio(assets.deliveryNotification);
-    audio.loop = false;
-    audio.volume = 1.0;
-    audio.play().catch(error => {
-      console.error('Error playing the notification sound:', error);
-    });
-  }
-*/
+   
   //  // Effect to monitor the data and check for delivered orders
 
   useEffect(() => {
     if (token) {
       fetchOrders();
-      const intervelId = setInterval(fetchOrders, 25000);
-      return () => clearInterval(intervelId);
+      const intervelId = setInterval(fetchOrders, 25000);  //fetchorders for every 25 seconds
+      return () => clearInterval(intervelId);  //clears the interval
     }
-  }, [token])
+  }, [token]) //renders when token available
 
-  //effect to make notification when the status is deliverd
-
-  /*
-  useEffect(() => {
-
-    data.forEach((order) => {
-      if (order.status === 'Delivered' && !notifiedOrders.current.has(order._id)) {
-        playDeliveryNotificationSound();
-        notifiedOrders.current.add(order._id); // Mark as notified
-      }
-    });
-  }, [data]);
-*/
+  
+   
 
 
   return (
