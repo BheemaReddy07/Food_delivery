@@ -13,7 +13,7 @@ const StoreContextProvider = (props) => {
     const [orders, setOrders] = useState([]);   //state to manage the orders notification
 
 
-    const url = "http://localhost:4000"   //backend url
+    const url = "https://dinenow-backend.onrender.com"   //backend url
 
 
     //function to fetch the user orders from the backend 

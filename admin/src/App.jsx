@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 
 const App = () => {
   const [adminToken, setAdminToken] = useState(null);  // Track loading state with null
-  const url = "http://localhost:4000";   //this url sends as a props for the all sections
+  const url = "https://dinenow-backend.onrender.com";   //this url sends as a props for the all sections
   const navigate = useNavigate();        //use to navigate
 
   // Fetch the token from localStorage on component mount
