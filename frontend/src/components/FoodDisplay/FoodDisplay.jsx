@@ -37,7 +37,7 @@ const FoodDisplay = ({ category }) => {    //destructing the
         <div className='food-display' id='food-display'>
             <h2>Top Dishes Near You</h2>
             <div className='sort-dropdown'>
-                <label htmlFor="sort">Filter by: </label>
+                <label htmlFor="sort">Sort by: </label>
                 <select id="sort" value={sortOrder} onChange={handleSortChange}>
                     <option value="">Select</option>
                     <option value="lowToHigh">Low to High</option>

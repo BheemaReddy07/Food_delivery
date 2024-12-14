@@ -53,10 +53,12 @@ const PlaceOrder = () => {
 
    useEffect(()=>{  //if user is not logged in it navigates to cart
      if(!token){
-        navigate("/cart")
+        navigate("/cart");
+        alert("Please Login...");
      }
      else if(getTotalCartAmount()==0){ //if cart is empty ,it navigates to the cart 
       navigate("/cart")
+      alert('Cart is Empty...')
      }
    },[token])
    
