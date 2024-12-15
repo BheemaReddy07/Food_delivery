@@ -244,6 +244,7 @@ const LoginPopup = ({ setShowLogin }) => {   //destructing the setShowlogin from
                     <div className='login-popup-toggle'>
                         {currState === "Login" ? (
                             <p>New user? <span onClick={() => setCurState("Register")}>Register</span></p>
+                            
                         ) : (
                             <p>Already have an account? <span onClick={() => setCurState("Login")}>Login</span></p>
                         )}

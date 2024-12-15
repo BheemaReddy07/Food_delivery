@@ -3,7 +3,7 @@ import './Drawer.css'
 import { CloseOutlined } from '@ant-design/icons';
 import { Link, useNavigate } from 'react-router-dom';
 import { StoreContext } from '../../Context/StoreContext';
-import {   HomeOutlined, MobileOutlined, ShopOutlined,LogoutOutlined ,ShoppingCartOutlined,ShoppingOutlined,InboxOutlined} from '@ant-design/icons';
+import {   HomeOutlined, MobileOutlined, ShopOutlined,LogoutOutlined ,ShoppingCartOutlined,ShoppingOutlined,InboxOutlined,UserAddOutlined} from '@ant-design/icons';
 import { jwtDecode } from 'jwt-decode';
 
 const Drawer = ({ isOpen, onClose }) => {   //destructing the isOpen and onCLose from the Navbar.jsx
@@ -71,6 +71,7 @@ const logout = ()=>{
           </button>
         </div>
         <ul>
+        <li><Link to="https://dinenow-admin.onrender.com" onClick={onClose}><UserAddOutlined /> Admin page</Link></li>
           <li><Link to="/" onClick={onClose}><HomeOutlined /> Home</Link></li>
           <li> <a onClick={() => handleNavigation('/', "#explore-menu")}><ShopOutlined />ExploreMenu</a></li>
           <li><a href='#footer' onClick={onClose}><MobileOutlined />Contact us</a></li>
