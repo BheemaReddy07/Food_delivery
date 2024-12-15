@@ -71,7 +71,7 @@ const logout = ()=>{
           </button>
         </div>
         <ul>
-        <li><Link to="https://vercel.com/bheema-reddys-projects/dinenow_admin/9B8MCYPUvNKSmjoMFk91nTDu8va9" onClick={onClose}><UserAddOutlined /> Admin page</Link></li>
+        <li><Link to="https://dinenowadmin.vercel.app/" onClick={onClose}><UserAddOutlined /> Admin page</Link></li>
           <li><Link to="/" onClick={onClose}><HomeOutlined /> Home</Link></li>
           <li> <a onClick={() => handleNavigation('/', "#explore-menu")}><ShopOutlined />ExploreMenu</a></li>
           <li><a href='#footer' onClick={onClose}><MobileOutlined />Contact us</a></li>

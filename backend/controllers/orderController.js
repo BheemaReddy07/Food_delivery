@@ -7,7 +7,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY) //creating the stripe w
 
 //placing userorder from frontend 
 const placeOrder =async (req,res) =>{
-    const frontend_url = "https://vercel.com/bheema-reddys-projects/dinenow/8mihQZEfiZJ8RPVH7vcMQcyrxCkL"  //to connect with the frontend  
+    const frontend_url = "https://dinenow.vercel.app/"  //to connect with the frontend  
     try {
         const newOrder = new orderModel({ //creating the neworder with userId,items,amount,address
             userId:req.body.userId,
