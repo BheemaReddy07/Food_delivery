@@ -216,11 +216,7 @@ const LoginPopup = ({ setShowLogin }) => {   //destructing the setShowlogin from
                         {(currState !== "Login" || forgotPasswordMode) && (
                             <div className='login-popup-input-password'>
                                 <input name='repassword' onChange={onChangeHandler} value={data.repassword} type={showRePassword ? 'text' : 'password'} placeholder='Re-enter Password' required />
-                                {showRePassword ? (
-                                    <EyeInvisibleOutlined className="eye-icon" onClick={() => setShowRePassword(false)} />
-                                ) : (
-                                    <EyeOutlined className="eye-icon" onClick={() => setShowRePassword(true)} />
-                                )}
+                                {showRePassword ? (   <EyeInvisibleOutlined className="eye-icon" onClick={() => setShowRePassword(false)} /> ) : (<EyeOutlined className="eye-icon" onClick={() => setShowRePassword(true)} />  )}
                             </div>
                         )}
                          {/**if otpsent state is true it show opt input field */}

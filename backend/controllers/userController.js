@@ -7,12 +7,12 @@ import nodemailer from "nodemailer"; //it used to send the email
 // Function to create JWT token
 const createToken = (id, name, profileImage, email) => {
   //creating the token that contains the id,name ,profileImage and email
-  return jwt.sign({ id, name, profileImage, email }, process.env.JWT_SECRET);
+  return jwt.sign({ id, name, profileImage, email }, process.env.JWT_SECRET,{expiresIn:'7d'});
 };
 //Function to create the Admin JWT token
 const createAdminToken = (id) => {
   //creting the admin token with the jusst id
-  return jwt.sign({ id }, process.env.JWT_SECRET);
+  return jwt.sign({ id }, process.env.JWT_SECRET,{expiresIn:'7d'});
 };
 // Function to generate a random OTP
 const generateOTP = () => {
