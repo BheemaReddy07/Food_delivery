@@ -13,7 +13,7 @@ const StoreContextProvider = (props) => {
     const [orders, setOrders] = useState([]);   //state to manage the orders notification
 
 
-    const url = import.meta.env.BACKENDURL  //backend url
+    const url = import.meta.env.VITE_BACKENDURL  //backend url
 
 
     //function to fetch the user orders from the backend 
