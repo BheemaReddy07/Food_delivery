@@ -4,7 +4,7 @@ import {useNavigate} from 'react-router-dom'
 import './Cart.css'
 
 const Cart = () => {
-  const {cartItems,food_list,removeFromCart,getTotalCartAmount,url} = useContext(StoreContext) //geting this from storecontext.jsx
+  const {cartItems,food_list,removeFromCart,getTotalCartAmount,url,addToCart} = useContext(StoreContext) //geting this from storecontext.jsx
 
   const navigate = useNavigate();
    
@@ -33,6 +33,7 @@ const Cart = () => {
                  <p>{cartItems[item._id]}</p>
                  <p>₹{item.price * cartItems[item._id]}</p>
                  <p onClick={()=>removeFromCart(item._id)} className='cross'>X</p>
+                 <p onClick={()=>addToCart(item._id)} className='plus'>+</p>
               </div>
               <hr/>
               </div>
