@@ -27,7 +27,7 @@
     cursor: pointer;
     color: red;
 }
-.cart-items-item .cross{
+.cart-items-item .plus{
     cursor: pointer;
     color: green;
     font-size: 14px;
