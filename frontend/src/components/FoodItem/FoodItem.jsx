@@ -14,14 +14,18 @@ const FoodItem = ({id,name,price,description,image,rate}) => { //getting the id,
         <div className='food-item-img-container'>
             <img className='food-item-image' src={url+"/images/"+image} />
             {
-               !cartItems[id]  //if  no items added then it shows the white plus symbol,else it show green plus and item count and red minus
-               ?<img className='add'  onClick={()=>addToCart(id)} src={assets.add_icon_white} />
-               :<div className='food-item-counter' >
-                <img onClick={()=>removeFromCart(id)} src={assets.remove_icon_red} />
-                <p>{cartItems[id]}</p>
-                <img onClick={()=>addToCart(id)} src={assets.add_icon_green} />
-               </div>
-
+               
+                cartItems && cartItems[id] !== undefined ? (
+                   <div className='food-item-counter' >
+                       <img onClick={()=>removeFromCart(id)} src={assets.remove_icon_red} />
+                       <p>{cartItems[id]}</p>
+                       <img onClick={()=>addToCart(id)} src={assets.add_icon_green} />
+                   </div>
+                ) : (
+                   <img className='add' onClick={()=>addToCart(id)} src={assets.add_icon_white} />
+                )
+             
+             
             }
         </div>
       <div className='food-item-info'>
