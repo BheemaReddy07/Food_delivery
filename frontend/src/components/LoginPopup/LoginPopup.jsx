@@ -205,7 +205,7 @@ const LoginPopup = ({ setShowLogin }) => {   //destructing the setShowlogin from
                         )}
                         <input name='email' onChange={onChangeHandler} value={data.email} type="email" placeholder='Your email' required />
                         <div className='login-popup-input-password'>
-                            <input name='password' onChange={onChangeHandler} value={data.password} type={showPassword ? 'text' : 'password'} placeholder='Your Password' required />
+                            <input name='password' onChange={onChangeHandler} value={data.password} type={showPassword ? 'text' : 'password'} placeholder={forgotPasswordMode? 'New Password':'Password'} required />
                             {showPassword ? (
                                 <EyeInvisibleOutlined className="eye-icon" onClick={() => setShowPassword(false)} />
                             ) : (
@@ -215,7 +215,7 @@ const LoginPopup = ({ setShowLogin }) => {   //destructing the setShowlogin from
                          {/** if not login or forgot mode it shows repassword*/}
                         {(currState !== "Login" || forgotPasswordMode) && (
                             <div className='login-popup-input-password'>
-                                <input name='repassword' onChange={onChangeHandler} value={data.repassword} type={showRePassword ? 'text' : 'password'} placeholder='Re-enter Password' required />
+                                <input name='repassword' onChange={onChangeHandler} value={data.repassword} type={showRePassword ? 'text' : 'password'} placeholder={forgotPasswordMode? 'New Re-Password':'Re-Password'} required />
                                 {showRePassword ? (   <EyeInvisibleOutlined className="eye-icon" onClick={() => setShowRePassword(false)} /> ) : (<EyeOutlined className="eye-icon" onClick={() => setShowRePassword(true)} />  )}
                             </div>
                         )}
