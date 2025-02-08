@@ -176,7 +176,7 @@ const loginUser = async (req, res) => {
 
 //requwst forgot password otp
 const requestForgetPasswordOTP = async (req, res) => {
-  const { email } = req.body;  //taking the name,email,password and repassword from the user through the axios
+  const { name, email, password, repassword } = req.body;  //taking the name,email,password and repassword from the user through the axios
   try {
     const user = await userModel.findOne({ email }); //checks the email is available or not in the database
     const now = Date.now(); //creating the current date 
@@ -196,7 +196,12 @@ const requestForgetPasswordOTP = async (req, res) => {
     if (now - user.lastOtpRequest >= 5 * 60 * 1000) { //if time exceeds the more than 5 mins ,then otpcount sets to 0
       user.otpRequestCount = 0;
     }
-    
+    if (password !== repassword) { //checks if entered password and repassword same or not
+      return res.json({
+        success: false,
+        message: "password not matching with repassword",
+      });
+    }
 
     const otp = generateOTP(); //generating the otp
     user.otp = otp; //assign the generated otp to the database usermode
@@ -216,7 +221,7 @@ const requestForgetPasswordOTP = async (req, res) => {
 
 //function to reset the password
 const resetPassword = async (req, res) => {
-  const {email, password, repassword, otp } = req.body; //taking the email and password and repasswird and otp from the user
+  const { email, password, repassword, otp } = req.body; //taking the email and password and repasswird and otp from the user
   try {
     const user = await userModel.findOne({ email }); //finds the user
     if (!user) {
