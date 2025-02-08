@@ -60,9 +60,9 @@ const LoginPopup = ({ setShowLogin }) => {   //destructing the setShowlogin from
             let response;
             if (forgotPasswordMode) {
                 response = await axios.post(`${url}/api/user/forgot/request-otp`, {
-                    name: data.name,
+                    
                     email: data.email,
-                    password: undefined,
+                    
                 });
             } else {
                 const formData = new FormData();
@@ -204,7 +204,9 @@ const LoginPopup = ({ setShowLogin }) => {   //destructing the setShowlogin from
                             <input name='name' onChange={onChangeHandler} value={data.name} type='text' placeholder='Your Name' required={!forgotPasswordMode} />
                         )}
                         <input name='email' onChange={onChangeHandler} value={data.email} type="email" placeholder='Your email' required />
-                        <div className='login-popup-input-password'>
+                       {
+                        (currState === 'Login' || currState === "Sign Up" || (forgotPasswordMode && otpSent)) && (
+                            <div className='login-popup-input-password'>
                             <input name='password' onChange={onChangeHandler} value={data.password} type={showPassword ? 'text' : 'password'} placeholder='Your Password' required />
                             {showPassword ? (
                                 <EyeInvisibleOutlined className="eye-icon" onClick={() => setShowPassword(false)} />
@@ -212,8 +214,10 @@ const LoginPopup = ({ setShowLogin }) => {   //destructing the setShowlogin from
                                 <EyeOutlined className="eye-icon" onClick={() => setShowPassword(true)} />
                             )}
                         </div>
+                        )
+                       }
                          {/** if not login or forgot mode it shows repassword*/}
-                        {(currState !== "Login" || forgotPasswordMode) && (
+                        {(currState !== "Login" || (forgotPasswordMode  && otpSent)) && (
                             <div className='login-popup-input-password'>
                                 <input name='repassword' onChange={onChangeHandler} value={data.repassword} type={showRePassword ? 'text' : 'password'} placeholder='Re-enter Password' required />
                                 {showRePassword ? (   <EyeInvisibleOutlined className="eye-icon" onClick={() => setShowRePassword(false)} /> ) : (<EyeOutlined className="eye-icon" onClick={() => setShowRePassword(true)} />  )}
