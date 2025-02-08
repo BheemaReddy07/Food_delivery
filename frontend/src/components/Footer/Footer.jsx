@@ -28,10 +28,10 @@ const Footer = () => {
               <div className='footer-content-right'>
                   <h2>GET IN TOUCH</h2>
                   <ul>
-                  <li><a href='mailto:bheemareddy29102003@gmail.com'><MailOutlined />bheemareddy29102003@gmail.com</a></li>
-                  <li><a href='mailto:dinenow2024@gmail.com'><MailOutlined />dinenow2024@gmail.com</a></li>
-                  <li><a href='https://github.com/BheemaReddy07/' target='_blank'><GithubOutlined />BheemaReddy07</a></li>
-                  <li><a href='www.linkedin.com/in/bheema-subramanyeswar-reddy-tatiparthi-541104344' target='_blank'><LinkedinOutlined />Bheema Subramanyeswar Reddy Tatiparthi</a></li>
+                  <li><a href='mailto:bheemareddy29102003@gmail.com'><MailOutlined /> bheemareddy29102003@gmail.com</a></li>
+                  <li><a href='mailto:dinenow2024@gmail.com'><MailOutlined /> dinenow2024@gmail.com</a></li>
+                  <li><a href='https://github.com/BheemaReddy07/' target='_blank'><GithubOutlined /> BheemaReddy07</a></li>
+                  <li><a href='www.linkedin.com/in/bheema-subramanyeswar-reddy-tatiparthi-541104344' target='_blank'><LinkedinOutlined /> Bheema Subramanyeswar Reddy Tatiparthi</a></li>
                       <li><MobileOutlined/> +91 77994 47698</li>
                       <li><MobileOutlined/> +91 81214 47698</li>   
                   </ul>
