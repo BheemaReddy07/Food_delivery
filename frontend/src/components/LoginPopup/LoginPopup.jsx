@@ -204,8 +204,19 @@ const LoginPopup = ({ setShowLogin }) => {   //destructing the setShowlogin from
                             <input name='name' onChange={onChangeHandler} value={data.name} type='text' placeholder='Your Name' required={!forgotPasswordMode} />
                         )}
                         <input name='email' onChange={onChangeHandler} value={data.email} type="email" placeholder='Your email' required />
-                       {
-                        (currState === 'Login' || currState === "Sign Up" || (forgotPasswordMode && otpSent)) && (
+                        {
+                            !forgotPasswordMode && (
+                            <div className='login-popup-input-password'>
+                            <input name='password' onChange={onChangeHandler} value={data.password} type={showPassword ? 'text' : 'password'} placeholder='Your Password' required />
+                            {showPassword ? (
+                                <EyeInvisibleOutlined className="eye-icon" onClick={() => setShowPassword(false)} />
+                            ) : (
+                                <EyeOutlined className="eye-icon" onClick={() => setShowPassword(true)} />
+                            )}
+                        </div>)
+                        
+                        }
+                        {(currState!=="Login" || currState!=="Sign Up" || (forgotPasswordMode && otpSent)) && (
                             <div className='login-popup-input-password'>
                             <input name='password' onChange={onChangeHandler} value={data.password} type={showPassword ? 'text' : 'password'} placeholder='Your Password' required />
                             {showPassword ? (
@@ -214,8 +225,7 @@ const LoginPopup = ({ setShowLogin }) => {   //destructing the setShowlogin from
                                 <EyeOutlined className="eye-icon" onClick={() => setShowPassword(true)} />
                             )}
                         </div>
-                        )
-                       }
+                        )}
                          {/** if not login or forgot mode it shows repassword*/}
                         {(currState !== "Login" || (forgotPasswordMode  && otpSent)) && (
                             <div className='login-popup-input-password'>
