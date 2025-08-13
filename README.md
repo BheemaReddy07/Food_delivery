@@ -85,7 +85,7 @@ CVV: Any 3 digits
 
 ## Contact
 Bheemareddy
-- email:bheemareddy2910@gmaail.com
+- email:bheemareddy2910@gmail.com
 
 🌟 If you like this project, give it a star!
 
