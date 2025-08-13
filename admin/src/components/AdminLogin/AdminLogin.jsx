@@ -63,6 +63,11 @@ const AdminLogin = ({ url }) => {
 
                     {errorMessage && <p className='error-message'>{errorMessage}</p>}
                     <button type='submit'>Login</button>
+
+                    <div className="credentials">
+                        <p>admin Email: dinenowadmin@gmail.com</p>
+                        <p>admin password: DineNowAdmin@123 </p>
+                    </div>
                 </form>
 
 
