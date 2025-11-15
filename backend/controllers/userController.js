@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import bcrypt, { genSalt } from "bcrypt";
 import validator from "validator";
 import nodemailer from "nodemailer"; //it used to send the email
-
+import { Resend } from "resend";
 // Function to create JWT token
 const createToken = (id, name, profileImage, email) => {
   //creating the token that contains the id,name ,profileImage and email
@@ -20,57 +20,48 @@ const generateOTP = () => {
 };
 
 // Function to send OTP email
-const sendOTPEmail = async (email, otp, name) => {
-  const transporter = nodemailer.createTransport({
-    //creatng the transport
-    service: "Gmail", //choosing gmail as a service
-    auth: {
-      //providing the credentials ,that are stored in the .env file
-      user: process.env.USER_EMAIL,
-      pass: process.env.USER_APPCODE,
-    },
-  });
-  //providing the details
-  const mailOptions = {
-    from: process.env.USER_EMAIL,
-    to: email,
-    subject: "Your OTP code",
-    text: `Hi ${name}!! Greetings from the dineNow ,here is Your OTP code is: ${otp}`,
-  };
-
-  await transporter.sendMail(mailOptions); //sending the email
-};
-
 // const sendOTPEmail = async (email, otp, name) => {
 //   const transporter = nodemailer.createTransport({
-//     host: process.env.SMTP_HOST,       // smtp-relay.brevo.com
-//     port: Number(process.env.SMTP_PORT),
-//     secure: true,                     // false for TLS (587). true for SSL (465)
+//     //creatng the transport
+//     service: "Gmail", //choosing gmail as a service
 //     auth: {
-//       user: process.env.SMTPB_USER,
-//       pass: process.env.SMTP_PASS,
+//       //providing the credentials ,that are stored in the .env file
+//       user: process.env.USER_EMAIL,
+//       pass: process.env.USER_APPCODE,
 //     },
-//     tls: {
-//       // Allow TLS; adjust only if you see cert errors
-//       rejectUnauthorized: false
-//     }
 //   });
-
-//   // optional: verify connection configuration
-//   await transporter.verify(); // throws if invalid
-
+//   //providing the details
 //   const mailOptions = {
-//     from: process.env.USERB_EMAIL,
+//     from: process.env.USER_EMAIL,
 //     to: email,
-//     subject: "Your OTP Code — dineNow",
-//     text: `Hi ${name}! Your dineNow OTP is: ${otp}`,
-//     // html: `<p>Hi <b>${name}</b>, your OTP is: <strong>${otp}</strong></p>`
+//     subject: "Your OTP code",
+//     text: `Hi ${name}!! Greetings from the dineNow ,here is Your OTP code is: ${otp}`,
 //   };
 
-//   const result = await transporter.sendMail(mailOptions);
-//   return result; // helpful for logging
+//   await transporter.sendMail(mailOptions); //sending the email
 // };
 
+ const resend = new Resend(process.env.RESEND_API_KEY);
+
+export const sendOTPEmail = async (email, otp, name) => {
+  try {
+    const response = await resend.emails.send({
+      from: process.env.FROM_EMAIL,
+      to: email,
+      subject: "Your OTP Code - dineNow",
+      html: `
+        <p>Hi <strong>${name}</strong>,</p>
+        <p>Your dineNow OTP code is:</p>
+        <h2 style="color:#ff4d4d;">${otp}</h2>
+        <p>This OTP is valid for 5 minutes.</p>
+      `,
+    });
+
+    console.log("Resend email success:", response);
+  } catch (error) {
+    console.error("Resend email error:", error);
+  }
+};
 
 // Request OTP for registration
 const requestOTP = async (req, res) => {
