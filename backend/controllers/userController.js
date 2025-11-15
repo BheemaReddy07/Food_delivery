@@ -2,9 +2,9 @@ import userModel from "../models/userModel.js";
 import jwt from "jsonwebtoken";
 import bcrypt, { genSalt } from "bcrypt";
 import validator from "validator";
-import nodemailer from "nodemailer"; //it used to send the email
-import { Resend } from "resend";
-// Function to create JWT token
+import nodemailer from "nodemailer";  
+import axios from "axios";
+
 const createToken = (id, name, profileImage, email) => {
   //creating the token that contains the id,name ,profileImage and email
   return jwt.sign({ id, name, profileImage, email }, process.env.JWT_SECRET,{expiresIn:'7d'});
@@ -14,12 +14,48 @@ const createAdminToken = (id) => {
   //creting the admin token with the jusst id
   return jwt.sign({ id }, process.env.JWT_SECRET,{expiresIn:'7d'});
 };
-// Function to generate a random OTP
+ 
 const generateOTP = () => {
   return Math.floor(100000 + Math.random() * 900000).toString(); //it generates a 6 digit numerical number
 };
 
-// Function to send OTP email
+
+
+export const sendOTPEmail = async (email, otp, name) => {
+  try {
+    const response = await axios.post(
+      "https://api.brevo.com/v3/smtp/email",
+      {
+        sender: {
+          email: process.env.FROM_EMAIL,
+          name: "dineNow"
+        },
+        to: [{ email }],
+        subject: "Your OTP Code - dineNow",
+        htmlContent: `
+          <p>Hi <strong>${name}</strong>,</p>
+          <p>Your dineNow OTP code is:</p>
+          <h2 style="color: #ff4d4d;">${otp}</h2>
+          <p>This code will expire in 5 minutes.</p>
+        `
+      },
+      {
+        headers: {
+          "api-key": process.env.BREVO_API_KEY,
+          "Content-Type": "application/json"
+        }
+      }
+    );
+
+    console.log("Brevo API email success:", response.data);
+  } catch (error) {
+    console.error(
+      "Brevo API email error:",
+      error.response?.data || error.message
+    );
+  }
+};
+
 // const sendOTPEmail = async (email, otp, name) => {
 //   const transporter = nodemailer.createTransport({
 //     //creatng the transport
@@ -41,27 +77,13 @@ const generateOTP = () => {
 //   await transporter.sendMail(mailOptions); //sending the email
 // };
 
- const resend = new Resend(process.env.RESEND_API_KEY);
 
-export const sendOTPEmail = async (email, otp, name) => {
-  try {
-    const response = await resend.emails.send({
-      from: process.env.FROM_EMAIL,
-      to: email,
-      subject: "Your OTP Code - dineNow",
-      html: `
-        <p>Hi <strong>${name}</strong>,</p>
-        <p>Your dineNow OTP code is:</p>
-        <h2 style="color:#ff4d4d;">${otp}</h2>
-        <p>This OTP is valid for 5 minutes.</p>
-      `,
-    });
 
-    console.log("Resend email success:", response);
-  } catch (error) {
-    console.error("Resend email error:", error);
-  }
-};
+
+
+
+
+
 
 // Request OTP for registration
 const requestOTP = async (req, res) => {
