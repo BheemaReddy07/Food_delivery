@@ -47,7 +47,7 @@ const sendOTPEmail = async (email, otp, name) => {
     port: Number(process.env.SMTP_PORT) || 587,
     secure: false,                     // false for TLS (587). true for SSL (465)
     auth: {
-      user: process.env.SMTP_USER,
+      user: process.env.SMTPB_USER,
       pass: process.env.SMTP_PASS,
     },
     tls: {
@@ -60,7 +60,7 @@ const sendOTPEmail = async (email, otp, name) => {
   await transporter.verify(); // throws if invalid
 
   const mailOptions = {
-    from: process.env.USER_EMAIL,
+    from: process.env.USERB_EMAIL,
     to: email,
     subject: "Your OTP Code — dineNow",
     text: `Hi ${name}! Your dineNow OTP is: ${otp}`,
