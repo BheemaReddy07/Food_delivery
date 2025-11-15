@@ -44,8 +44,8 @@ const generateOTP = () => {
 const sendOTPEmail = async (email, otp, name) => {
   const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,       // smtp-relay.brevo.com
-    port: Number(process.env.SMTP_PORT) || 587,
-    secure: false,                     // false for TLS (587). true for SSL (465)
+    port: Number(process.env.SMTP_PORT),
+    secure: true,                     // false for TLS (587). true for SSL (465)
     auth: {
       user: process.env.SMTPB_USER,
       pass: process.env.SMTP_PASS,
