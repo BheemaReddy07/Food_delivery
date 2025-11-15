@@ -20,56 +20,56 @@ const generateOTP = () => {
 };
 
 // Function to send OTP email
-// const sendOTPEmail = async (email, otp, name) => {
-//   const transporter = nodemailer.createTransport({
-//     //creatng the transport
-//     service: "Gmail", //choosing gmail as a service
-//     auth: {
-//       //providing the credentials ,that are stored in the .env file
-//       user: process.env.USER_EMAIL,
-//       pass: process.env.USER_APPCODE,
-//     },
-//   });
-//   //providing the details
-//   const mailOptions = {
-//     from: process.env.USER_EMAIL,
-//     to: email,
-//     subject: "Your OTP code",
-//     text: `Hi ${name}!! Greetings from the dineNow ,here is Your OTP code is: ${otp}`,
-//   };
-
-//   await transporter.sendMail(mailOptions); //sending the email
-// };
-
 const sendOTPEmail = async (email, otp, name) => {
   const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST,       // smtp-relay.brevo.com
-    port: Number(process.env.SMTP_PORT),
-    secure: true,                     // false for TLS (587). true for SSL (465)
+    //creatng the transport
+    service: "Gmail", //choosing gmail as a service
     auth: {
-      user: process.env.SMTPB_USER,
-      pass: process.env.SMTP_PASS,
+      //providing the credentials ,that are stored in the .env file
+      user: process.env.USER_EMAIL,
+      pass: process.env.USER_APPCODE,
     },
-    tls: {
-      // Allow TLS; adjust only if you see cert errors
-      rejectUnauthorized: false
-    }
   });
-
-  // optional: verify connection configuration
-  await transporter.verify(); // throws if invalid
-
+  //providing the details
   const mailOptions = {
-    from: process.env.USERB_EMAIL,
+    from: process.env.USER_EMAIL,
     to: email,
-    subject: "Your OTP Code — dineNow",
-    text: `Hi ${name}! Your dineNow OTP is: ${otp}`,
-    // html: `<p>Hi <b>${name}</b>, your OTP is: <strong>${otp}</strong></p>`
+    subject: "Your OTP code",
+    text: `Hi ${name}!! Greetings from the dineNow ,here is Your OTP code is: ${otp}`,
   };
 
-  const result = await transporter.sendMail(mailOptions);
-  return result; // helpful for logging
+  await transporter.sendMail(mailOptions); //sending the email
 };
+
+// const sendOTPEmail = async (email, otp, name) => {
+//   const transporter = nodemailer.createTransport({
+//     host: process.env.SMTP_HOST,       // smtp-relay.brevo.com
+//     port: Number(process.env.SMTP_PORT),
+//     secure: true,                     // false for TLS (587). true for SSL (465)
+//     auth: {
+//       user: process.env.SMTPB_USER,
+//       pass: process.env.SMTP_PASS,
+//     },
+//     tls: {
+//       // Allow TLS; adjust only if you see cert errors
+//       rejectUnauthorized: false
+//     }
+//   });
+
+//   // optional: verify connection configuration
+//   await transporter.verify(); // throws if invalid
+
+//   const mailOptions = {
+//     from: process.env.USERB_EMAIL,
+//     to: email,
+//     subject: "Your OTP Code — dineNow",
+//     text: `Hi ${name}! Your dineNow OTP is: ${otp}`,
+//     // html: `<p>Hi <b>${name}</b>, your OTP is: <strong>${otp}</strong></p>`
+//   };
+
+//   const result = await transporter.sendMail(mailOptions);
+//   return result; // helpful for logging
+// };
 
 
 // Request OTP for registration
